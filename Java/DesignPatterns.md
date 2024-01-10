@@ -1,6 +1,4 @@
-## Design Patterns
-
----
+# Design Patterns
 
 - Provide solutions to common design problems.
 - Robust.

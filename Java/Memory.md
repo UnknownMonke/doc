@@ -1,8 +1,6 @@
-## Memory management
+# Memory management
 
----
-
-### <u>**Structure**</u> :
+### <u>Structure</u> :
 ```
       Minor GC                          Major GC
 
@@ -61,10 +59,10 @@
         - Can belong to the Perm or Heap depending on the JVM implementation.
     - Stack memory.
 
-### <u>**Garbage Collection**</u> :
+
+### <u>Garbage Collection</u> :
 
 - Remove non referenced Objects.
-
 
 - All GC event are "Stop the world" :
     - All application threads are stopped until completion.
@@ -77,26 +75,28 @@
 2. Sweep (deletion)
 3. Compacting (compact remaining Objects)
 
+<br>
+
 ***GC Types*** :
 
-1. <u>*Serial GC*</u>
+1. *<u>Serial GC</u>*
     - Simple mark-sweep-compact with young and old gen structure.
     - Used for small standalone apps, small CPU or low memory footprint apps.
 
 
-2. <u>*Parallel GC*</u>
+2. *<u>Parallel GC</u>*
     - Spawns N serial GC threads for Young Generation running in parallel for N CPU cores. Old GC is still single-threaded.
 
 
-3. <u>*Parallel Old GC*</u>
+3. *<u>Parallel Old GC</u>*
 
 
-4. <u>*Concurrent Mark Sweep (CMS) Collector*</u>
+4. *<u>Concurrent Mark Sweep (CMS) Collector</u>*
     - Runs GC concurrently with app threads for old GC, to minimize downtime.
     - Young Generation is in parallel, not concurrent.
 
 
-5. <u>*G1 GC (Garbage First)*</u>
+5. *<u>G1 GC (Garbage First)</u>*
     - Will replace CMS.
     - Parallel, concurrent and incrementally compacting low-pause GC.
     - No Young or Old Generation, memory is divided into multiple equal-sized Heap regions.

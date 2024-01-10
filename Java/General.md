@@ -1,22 +1,42 @@
-## Environment
+# General Doc
+
+### Summary
+
+- [Environment](#environment)
+- [Annotations](#annotations)
+- [Class Loader](#class-loader)
+- [Unchecked Exceptions](#unchecked-exceptions)
+- [Inheritance](#inheritance)
+- [Interfaces](#interfaces)
+- [Functional Interface](#functional-interface)
+- [Pass-by-value](#pass-by-value)
+- [Increment operators](#increment-operators)
+- [StringBuilder vs StringBuffer](#stringbuilder-vs-stringbuffer)
+- [String manipulation](#string-manipulation)
+- [Immutability](#immutability)
+- [Miscellaneous](#miscellaneous)
 
 ---
 
-<u>**JDK**</u> : Java Development Kit
+### Environment
+
+**<u>JDK</u>** : Java Development Kit
 
 - Provides the tools to debug, compile and execute Java programs.
 - JDK contains the JRE with Java compiler.
 
-<u>**JVM**</u> : Java Virtual Machine
+**<u>JVM</u>** : Java Virtual Machine
 
 - Responsible for converting the byte code to machine code when executing a Java program.
 - Provides Memory management, Garbage Collection, Security, etc.
 - Provides platform independence through the VM.
 
-<u>**JRE**</u> : Java Runtime Environment
+**<u>JRE</u>** : Java Runtime Environment
 
 - Holds the implementation of the JVM
 - Only contains tools to execute (and not compile) a Java program (Jar/War).
+
+<br>
 
 ---
 
@@ -71,6 +91,7 @@ Cat c1 = (Cat) a    // Explicit casting works because c is of type Animal.
 Animal a = new Animal();
 Cat c1 = (Cat) a    // ClassCastException.
 ```
+
 
 ### Interfaces
 
@@ -143,11 +164,15 @@ String manipulation is important for several reasons :
 - Contributes to safer code, Objects can be used as keys without fear of unexpected change.
 - Thread-safe.
 
+<br>
+
+---
+
 ### Miscellaneous
 
 - String class is final and immutable.
 - <u>All</u> primitive wrappers extend the `java.lang.Number` class.
-- `compareTo()` returns 0 is equal, < 0 if before the parameter in lexical order, and > 0 if after.
+- `compareTo()` returns 0 if equal, < 0 if before the parameter in lexical order, and > 0 if after.
 - `s1.concat(s2)` return a new String and does not modify the existing String.
 - The + operator has precedence over == : 
 `"result : " + string1 == string2` will transform to `"result : string1" == "string2"` and return `false`.
