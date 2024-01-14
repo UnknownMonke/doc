@@ -3,22 +3,22 @@
 ### Summary
 
 - [Environment](#environment)
-- [Annotations](#annotations)
-- [Class Loader](#class-loader)
-- [Unchecked Exceptions](#unchecked-exceptions)
-- [Inheritance](#inheritance)
-- [Interfaces](#interfaces)
-- [Functional Interface](#functional-interface)
-- [Pass-by-value](#pass-by-value)
-- [Increment operators](#increment-operators)
-- [StringBuilder vs StringBuffer](#stringbuilder-vs-stringbuffer)
-- [String manipulation](#string-manipulation)
-- [Immutability](#immutability)
-- [Miscellaneous](#miscellaneous)
+- [Language specifics](#language-specifics)
+    - [Annotations](#annotations)
+    - [Class Loader](#class-loader)
+    - [Unchecked Exceptions](#unchecked-exceptions)
+    - [Inheritance](#inheritance)
+    - [Interfaces](#interfaces)
+    - [Functional Interface](#functional-interface)
+    - [Pass-by-value](#pass-by-value)
+    - [Increment operators](#increment-operators)
+    - [StringBuilder vs StringBuffer](#stringbuilder-vs-stringbuffer)
+    - [String manipulation](#string-manipulation)
+    - [Immutability](#immutability)
+    - [Miscellaneous](#miscellaneous)
 
----
 
-### Environment
+## Environment
 
 **<u>JDK</u>** : Java Development Kit
 
@@ -38,33 +38,34 @@
 
 <br>
 
----
+
+## Language specifics
+
 
 ### Annotations
 
 Annotations can be parsed by a tool or the compiler and are available at runtime.
 
 - Built-in annotations :
-  - `@Override` for inheritance
-  - `@Deprecated`
-  - `@SuppressWarnings`
-  - `@FunctionalInterface`
-  - `@SafeVarargs`
-
+    - `@Override` for inheritance
+    - `@Deprecated`
+    - `@SuppressWarnings`
+    - `@FunctionalInterface`
+    - `@SafeVarargs`
 
 - Custom annotation :
-  - Interface annotated with `@Interface`.
-  - No parameters.
-  - Can have meta annotations attached.
+    - Interface annotated with `@Interface`.
+    - No parameters.
+    - Can have meta annotations attached.
 
 
 ### Class Loader
 
 - Loads the compiled .class files into the JVM memory.
 - Built-in classloaders :
-  - Bootstrap : loads JDK internal classes.
-  - Extension : loads from /extensions directory.
-  - System : loads from the current classpath.
+    - Bootstrap : loads JDK internal classes.
+    - Extension : loads from /extensions directory.
+    - System : loads from the current classpath.
 - Access : `MyClass.class.getClassLoader();`
 - ClassLoaders delegate to their parent loader when loading a class, if not found in the range of the parent,
 the loader attempts to load the class itself.
@@ -74,8 +75,8 @@ the loader attempts to load the class itself.
 
 - No need to be declared in a throw clause.
 - `RunTimeException` & subclasses :
-  - `ClassCastException`
-  - `NullPointerException`
+    - `ClassCastException`
+    - `NullPointerException`
 
 
 ### Inheritance
@@ -104,9 +105,9 @@ Cat c1 = (Cat) a    // ClassCastException.
 
 - Interface of only 1 method, annotated `@FunctionalInterface`.
 - Purpose :
-  - Removes boilerplate code.
-  - Can use lambda to instantiate them.
-  - ex : `java.util.Function`.
+    - Removes boilerplate code.
+    - Can use lambda to instantiate them.
+    - ex : `java.util.Function`.
 - FI can have non-abstract Object methods, such as `equals()`.
 
 

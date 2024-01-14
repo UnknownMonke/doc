@@ -1,6 +1,7 @@
-# Memory management
+# JVM Memory Management
 
-### <u>Structure</u> :
+## Structure
+
 ```
       Minor GC                          Major GC
 
@@ -22,19 +23,21 @@
              Young Gen                   Old Gen
 ```
 
-**Heap Space** :
+### Heap Space
 
 - Used by the JVM to allocate memory to Objects (and not primitives).
 - The GC runs in the Heap to free memory used by Objects with no reference.
 - Any Object in the Heap has global access anywhere in the application.
 
-**Stack Memory** :
+
+### Stack Memory
 
 - Contains methods-specific values and references to other Objects in the Heap used in the method.
 - Primitives are stored here.
 - Objects are stored in the Heap and referenced in the stack.
 
-**Young Generation** :
+
+### Young Generation
 
 - **Eden Memory** :
     - All new Objects are created there.
@@ -42,12 +45,14 @@
 - The survivors are always stacked inside one of the two stacks in order to gain performances. The other stays empty.
 - Objects that survive many GC cycles are moved into the Old Generation Memory (threshold of age).
 
-**Old Generation** :
+
+### Old Generation
 
 - Contains long-lived Objects.
 - GC is performed when the stack is full, but takes longer than the minor GC inside Eden.
 
-**Permanent Generation** :
+
+### Permanent Generation
 
 - Contains application metadata required by the JVM, SE libraries, classes, methods.
 - Not a part of the Heap.
@@ -59,11 +64,12 @@
         - Can belong to the Perm or Heap depending on the JVM implementation.
     - Stack memory.
 
+<br>
 
-### <u>Garbage Collection</u> :
+
+## Garbage Collection
 
 - Remove non referenced Objects.
-
 - All GC event are "Stop the world" :
     - All application threads are stopped until completion.
     - Minor GC is fast and the stop is unnoticeable.
@@ -83,18 +89,14 @@
     - Simple mark-sweep-compact with young and old gen structure.
     - Used for small standalone apps, small CPU or low memory footprint apps.
 
-
 2. *<u>Parallel GC</u>*
     - Spawns N serial GC threads for Young Generation running in parallel for N CPU cores. Old GC is still single-threaded.
 
-
 3. *<u>Parallel Old GC</u>*
-
 
 4. *<u>Concurrent Mark Sweep (CMS) Collector</u>*
     - Runs GC concurrently with app threads for old GC, to minimize downtime.
     - Young Generation is in parallel, not concurrent.
-
 
 5. *<u>G1 GC (Garbage First)</u>*
     - Will replace CMS.

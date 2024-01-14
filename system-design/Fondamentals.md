@@ -5,7 +5,7 @@
 - [Horizontal and vertical scaling](#horizontal-and-vertical-scaling)
 - [Microservices](#microservices)
 - [Proxy servers](#proxy-servers)
-    - [CAP theorem](#cap-theorem)
+- [CAP theorem](#cap-theorem)
 - [Redundancy and replication](#redundancy-and-replication)
     - [Redundancy](#redundancy)
     - [Replication](#replication)
@@ -34,9 +34,10 @@ A good system design requires you to think about everything in an infrastructure
 
 ## Horizontal and vertical scaling
 
+
 ### Scalability
 
-Application’s ability to handle and withstand an increased workload (through computational power) without sacrificing latency.
+Application’s ability to handle and withstand an increased **workload** (through computational power) without sacrificing **latency**.
 
 **Vertical scaling** -> Increases each server power but not capacity.
 
@@ -80,18 +81,18 @@ Proxy servers not only relays requests but also provide many benefits, such as:
 - Control of the internet usage of employees and children
 - Cache data to speed up requests
 
-### CAP theorem
-
-The CAP theorem is a fundamental theorem within the field of system design. It states that a distributed system can only provide 2 of 3 properties simultaneously : consistency, availability, and partition tolerance. The theorem formalizes the tradeoff between consistency and availability when there’s a partition.
-
 <br>
 
-<img src="images/sd-cap.png" alt="drawing" width="400"/>
+
+## CAP theorem
+
+An important part of distributed systems is the **CAP theorem** : a distributed data store cannot simultaneously be **consistent**, **available**, and **partition tolerant** (*see related document*).
 
 <br>
 
 
 ## Redundancy and replication
+
 
 ### Redundancy
 
@@ -104,6 +105,7 @@ The CAP theorem is a fundamental theorem within the field of system design. It s
 <img src="images/sd-failover.png" alt="drawing" width="400"/>
 
 <br>
+
 
 ### Replication
 
@@ -120,11 +122,13 @@ Data is at the center of every system. When designing a system, we need to consi
 
 There are various storage techniques that we can implement depending on the needs of our system.
 
+
 ### Block storage
 
 Data is broken down into blocks of equal sizes, and each individual block is given a unique identifier for easy accessibility. 
 <br>
 These blocks are stored in physical storage. As opposed to adhering to a fixed path, blocks can be stored anywhere in the system, making more efficient use of the resources.
+
 
 ### File storage
 
@@ -132,6 +136,7 @@ Hierarchical storage methodology. The data is stored in files, folders, director
 This storage method is only good for a limited amount of data, primarily structured data.
 
 *As the size of the data grows beyond a certain point, this data storage method can become a hassle.*
+
 
 ### Object storage
 
@@ -142,6 +147,7 @@ Preferred data storage method for data archiving and data backups because it off
 Object storage isn’t directly accessible to an operating system. Communication happens through RESTful APIs at the application level.
 
 This type of storage provides immense flexibility and value to systems, because backups, unstructured data, and log files are important to any system. Used for system with large datasets.
+
 
 ### Redundant Disk Arrays (RAID)
 
@@ -185,6 +191,7 @@ File systems manage multiple operations, such as:
 
 Without file systems, it would be hard to identify files, retrieve files, or manage authorizations for individual files.
 
+
 ### Google File System (GFS)
 
 - Scalable distributed file system designed for large data-intensive applications, like Gmail or YouTube. 
@@ -192,6 +199,7 @@ Without file systems, it would be hard to identify files, retrieve files, or man
 - Designed for system-to-system interaction, rather than user-to-user interaction. - - Scalable and fault-tolerant. 
 
 The architecture consists of GFS clusters, which contain a single master and multiple ChunkServers that can be accessed by multiple clients.
+
 
 ### Hadoop Distributed File System (HDFS)
 

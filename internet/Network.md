@@ -127,44 +127,34 @@ This message, and all other data sent between the client and the server, is sent
 
 The Internet is a technical infrastructure which allows billions of computers to be connected all together. Among those computers, some computers (called Web servers) can send messages intelligible to web browsers. 
 
-The Internet is an infrastructure, whereas the Web is a service built on top of the infrastructure. It is worth noting there are several other services built on top of the Internet, such as email and IRC.
+**Internet** > Infrastructure.
+
+**The Web** > Service built on top of the infrastructure.
+
+There are several other services built on top of the Internet, such as **email** or **IRC**.
 
 
 ### Intranet & Extranets
 
-Intranets are private networks that are restricted to members of a particular organization. They are commonly used to provide a portal for members to securely access shared resources, collaborate and communicate.
+**Intranets** :
 
-Extranets are very similar to Intranets, except they open all or part of a private network to allow sharing and collaboration with other organizations. They are typically used to safely and securely share information with clients and stakeholders who work closely with a business. Often their functions are similar to those provided by an intranet: information and file sharing, collaboration tools, discussion boards, etc.
+- Private networks.
+- Restricted to members of a particular organization.
+- Access shared resources, collaborate and communicate.
+
+**Extranets** : 
+
+- Private network partially or totally opened to allow sharing and collaboration with other organizations.
+- Safely and securely share information with clients and stakeholders who work closely with a business.
+- Similar functions of Intranets.
 
 Both intranets and extranets run on the same kind of infrastructure as the Internet, and use the same protocols. They can therefore be accessed by authorized members from different physical locations. 
 
 
 ### Domain Name Service (DNS)
 
-Any Internet-connected computer can be reached through a public IP Address, either an IPv4 address (e.g. 192.0.2.172) or an IPv6 address (e.g., 2001:db8:8b73:0000:0000:8a2e:0370:1337).
 
-The Domain Name System (DNS) is a hierarchical and distributed naming system for computers, services, and other resources in the Internet or other Internet Protocol (IP) networks.
-
-It translates numerical IP addresses needed for locating and identifying computer services and devices to human readable and unique domain names.
-
-**Ownership** :
-
-Domain names cannot be bought. This is so that unused domain names eventually become available to be used again by someone else. If every domain name was bought, the web would quickly fill up with unused domain names that were locked and couldn't be used by anyone.
-
-Instead, you pay for the right to use a domain name for one or more years. You can renew your right, and your renewal has priority over other people's applications. But you never own the domain name.
-
-Companies called registrars use domain name registries to keep track of technical and administrative information connecting you to your domain name.
-
-DNS databases are stored on every DNS server worldwide, and all these servers refer to a few special servers called "authoritative name servers" or "top-level DNS servers".
-
-Whenever your registrar creates or updates any information for a given domain, the information must be refreshed in every DNS database. 
-Each DNS server that knows about a given domain stores the information for some time before it is automatically invalidated and then refreshed (the DNS server queries an authoritative server and fetches the updated information from it). Thus, it takes some time for DNS servers that know about this domain name to get the up-to-date information.
+**Ownership**
 
 
 ### Packets
-
-In networking, a packet is a small segment of a larger message. Data sent over computer networks*, such as the Internet, is divided into packets. These packets are then recombined by the computer or device that receives them.
-
-Suppose Alice is writing a letter to Bob, but Bob's mail slot is only wide enough to accept envelopes the size of a small index card. Instead of writing her letter on normal paper and then trying to stuff it through the mail slot, Alice divides her letter into much shorter sections, each a few words long, and writes these sections out on index cards. She delivers the group of cards to Bob, who puts them in order to read the whole message.
-
-This is similar to how packets work on the Internet. Suppose a user needs to load an image. The image file does not go from a web server to the user's computer in one piece. Instead, it is broken down into packets of data, sent over the wires, cables, and radio waves of the Internet, and then reassembled by the user's computer into the original photo.
