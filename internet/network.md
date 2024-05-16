@@ -36,7 +36,7 @@ Here is a quick recap of the different communication supports for LAN networks (
 
 When more than 2 components must communicate together, if each of them is wired with all the others, it can get complicated fast.
 
-<img src="images/network-schema-1.png" alt="drawing" width="400"/>
+<img src="assets/network-schema-1.png" alt="drawing" width="400"/>
 
 <br>
 
@@ -48,7 +48,7 @@ To send a message to component B, component A must send the message to the switc
 
 <br>
 
-<img src="images/network-schema-2.png" alt="drawing" width="400"/>
+<img src="assets/network-schema-2.png" alt="drawing" width="400"/>
 
 <br>
 
@@ -63,8 +63,8 @@ Of course a single switch can't scale that far, but we can connect 2 switch toge
 
 A switch that connects 2 different networks is called a **router**.
 
-<img src="images/network-schema-3.png" alt="drawing" width="400"/>
-<img src="images/network-schema-4.png" alt="drawing" width="400"/>
+<img src="assets/network-schema-3.png" alt="drawing" width="400"/>
+<img src="assets/network-schema-4.png" alt="drawing" width="400"/>
 
 <br>
 
@@ -79,7 +79,7 @@ The specificity of the Internet is that it uses the existing phone network to pr
 
 To connect our network to the telephone infrastructure, we need a special piece of equipment called a **modem**. This modem turns the information from our network into information manageable by the telephone infrastructure and vice versa.
 
-<img src="images/network-schema-5.png" alt="drawing" width="400"/>
+<img src="assets/network-schema-5.png" alt="drawing" width="400"/>
 
 <br>
 
@@ -89,7 +89,7 @@ An ISP is a company that manages some special routers that are all linked togeth
 <br>
 The Internet consists of this whole infrastructure of networks.
 
-<img src="images/network-schema-6.png" alt="drawing" width="200"/>
+<img src="assets/network-schema-6.png" alt="drawing" width="200"/>
 
 <br>
 

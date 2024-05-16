@@ -15,7 +15,7 @@
 
 A traditional Java application is compiled **Just-In-Time** : 
 
-<img src="images/native_jit.png" alt="drawing" width="600"/>
+<img src="assets/native_jit.png" alt="drawing" width="600"/>
 
 <br>
 
@@ -49,7 +49,7 @@ A **native program** is platform specific. It can only runs on certain OS or CPU
 
 A native Java application is compiled **Ahead-Of-Time** : 
 
-<img src="images/native_aot.png" alt="drawing" width="600"/>
+<img src="assets/native_aot.png" alt="drawing" width="600"/>
 
 <br>
 
@@ -81,7 +81,7 @@ Without a virtual machine, the app is therefore dependent from the Platform it h
 
 <br>
 
-<img src="images/native_aot-vs-jit.jpeg" alt="drawing" width="400"/>
+<img src="assets/native_aot-vs-jit.jpeg" alt="drawing" width="400"/>
 
 <br>
 
@@ -119,7 +119,7 @@ Necessary libraries can be added as static links. They are bundled within the im
 |:----------------------------:|:-------------------------------:|:----------------------------:|
 |______________________________|_________________________________|______________________________|
 
-<img src="images/native_links.png" alt="drawing" width="600"/>
+<img src="assets/native_links.png" alt="drawing" width="600"/>
 
 <br>
 

@@ -219,11 +219,11 @@ When interfaces have hierarchies in both interfaces as well as implementations, 
 
 The implementation follows the notion of preferring composition over inheritance.
 
-<img src="images/dp_bridge-situation.png" alt="drawing" width="400"/>
+<img src="assets/dp_bridge-situation.png" alt="drawing" width="400"/>
 
 <br>
 
-<img src="images/dp_bridge-uml.png" alt="drawing" width="400"/>
+<img src="assets/dp_bridge-uml.png" alt="drawing" width="400"/>
 
 <br>
 

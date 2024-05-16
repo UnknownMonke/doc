@@ -43,7 +43,7 @@ Application’s ability to handle and withstand an increased **workload** (throu
 
 **Horizontal scaling** -> Increases the number of servers but not each server power.
 
-<img src="images/sd-scaling.png" alt="drawing" width="600"/>
+<img src="assets/sd-scaling.png" alt="drawing" width="600"/>
 
 <br>
 
@@ -102,7 +102,7 @@ An important part of distributed systems is the **CAP theorem** : a distributed 
 
 <br>
 
-<img src="images/sd-failover.png" alt="drawing" width="400"/>
+<img src="assets/sd-failover.png" alt="drawing" width="400"/>
 
 <br>
 

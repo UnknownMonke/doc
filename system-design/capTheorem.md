@@ -20,7 +20,7 @@ The CAP theorem states that a **distributed system** can only provide 2 of the f
 
 <br>
 
-<img src="images/cap_.png" alt="drawing" width="300"/>
+<img src="assets/cap_.png" alt="drawing" width="300"/>
 
 <br>
 
@@ -67,7 +67,7 @@ In the presence of a **partition**, one is then left with two options: **consist
 
 <br>
 
-<img src="images/cap_expl.png" alt="drawing" width="400"/>
+<img src="assets/cap_expl.png" alt="drawing" width="400"/>
 
 <br>
 
