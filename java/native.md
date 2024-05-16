@@ -2,18 +2,22 @@
 
 ### Summary
 
-- [Traditional Java structure](#traditional-java-structure)
-- [Native Java structure](#native-java-structure)
-- [New usages](#new-usages)
-- [New solutions](#new-solutions)
-- [Use cases](#use-cases)
+- [Traditional Java Applications](#traditional-java-applications)
+- [Native Java Applications](#native-java-applications)
+    - [Solutions](#solutions)
+    - [Use cases](#use-cases)
+    - [Usages](#usages)
 
+#
+<br>
 
-## Traditional Java structure
+## Traditional Java Applications
 
-*Write Once, Run Everywhere.*
+- *Write Once, Run Everywhere.*
 
-A traditional Java application is compiled **Just-In-Time** : 
+- Compiled **Just-In-Time** :
+
+<br>
 
 <img src="assets/native_jit.png" alt="drawing" width="600"/>
 
@@ -24,14 +28,14 @@ The JIT compiler recompiles on the fly when execution path changes.
 <br>
 The JVM adapts to the end machine OS and CPU architecture (the **platform**) and allows a Java program to run regardless of the platform implementation.
 
-**<u>Advantages</u>** :
+**Pros** :
 
 - Platform independence.
 - Optimized performances on the long run.
 - Fast build time.
 - Low build memory usage.
 
-**<u>Issues</u>** :
+**Cons** :
 
 - High boot time : loads JVM, loads code, framework elements, classes...
 - High CPU usage : JVM adds a layer between the code and the CPU.
@@ -42,18 +46,19 @@ The JVM adapts to the end machine OS and CPU architecture (the **platform**) and
 
 <br>
 
+## Native Java Applications
 
-## Native Java structure
+- **Platform specific**. It can only runs on certain OS or CPU architectures.
 
-A **native program** is platform specific. It can only runs on certain OS or CPU architectures.
+- Compiled **Ahead-Of-Time** :
 
-A native Java application is compiled **Ahead-Of-Time** : 
+<br>
 
 <img src="assets/native_aot.png" alt="drawing" width="600"/>
 
 <br>
 
-The app is built and run to load the cache and all classes. A snapshot is made and assembled into a native image towards a binary that can be directly interpreted by the end machine.
+The app is built and run to load the **cache** and all classes. A **snapshot** is made and assembled into a native image towards a binary that can be directly interpreted by the end machine.
 
 Everything not detected as used is <u>excluded from the final image</u>.
 This means that *all* dynamic concepts of Java are ignored :
@@ -63,21 +68,21 @@ This means that *all* dynamic concepts of Java are ignored :
 - Serialization
 - Classpath
 
-Without a virtual machine, the app is therefore dependent from the Platform it has been compiled on, like a Docker image on linux for instance.
+Without a virtual machine, the app is therefore dependent from the platform it has been compiled on, like a Docker image on linux for instance.
 
-**<u>Advantages</u>** :
+**Pros** :
 
 - Fast boot time : everything is already packaged.
 - Low CPU usage.
-- Low memory footprint no VM, no GC.
+- Low memory footprint : no VM, no GC.
 
-**<u>Issues</u>** :
+**Cons** :
 
 - No access to dynamic features.
-- Platform dependence.
+- Platform **dependence**.
 - Still less performant than JIT compiled program.
-- Very long build time (4-6x longer).
-- High memory usage when compiling (often > 32Go RAM). Can be problematic when running build jobs in parallel.
+- Very **long** build time (4-6x longer).
+- **High memory usage** when compiling (often > 32Go RAM). Can be problematic when running build jobs in parallel.
 
 <br>
 
@@ -85,35 +90,24 @@ Without a virtual machine, the app is therefore dependent from the Platform it h
 
 <br>
 
+#
+### Solutions
 
-## New usages
+- **Oracle's GraalVM** :
 
-**The cloud** :
+    - Advanced JDK - Offers support for native Java applications.
 
-- Pay-by-uptime.
-- Scale at 0 (serverless, function as a service) : boot-and-stop on demand.
+- **Metadata agent** :
+
+    - Solves the problem of dynamic features.
+    - Retreives all execution paths and add them into the compiler as metadata.
+
+- **Static links** :
+
+    - Necessary libraries can be added as static links.
+    - Bundled within the image, reducing the OS adherence partially or totally (can run a Docker container from scratch).
 
 <br>
-
-> Needs fast start time, high performances, low memory foorprint.
-
-<br>
-
-
-## New solutions
-
-**Oracle's GraalVM** :
-
-Advanced JDK - Offers support for native Java applications.
-
-**Metadata agent** :
-
-Solves the problem of dynamic features.
-It retreives all execution paths and add them into the compiler as metadata.
-
-**Static links** :
-
-Necessary libraries can be added as static links. They are bundled within the image, reducing the OS adherence partially or totally (can run a Docker container from scratch).
 
 | Dynamic                      | Semi-static                     | Static                       | 
 |:----------------------------:|:-------------------------------:|:----------------------------:|
@@ -123,8 +117,8 @@ Necessary libraries can be added as static links. They are bundled within the im
 
 <br>
 
-
-## Use cases
+#
+### Use cases
 
 **Native applications** are best to be used in the following context :
 
@@ -133,3 +127,14 @@ Necessary libraries can be added as static links. They are bundled within the im
 - Low dependencies.
 - Single platform.
 
+#
+### Usages
+
+- **The cloud** :
+
+    - Pay-by-uptime.
+    - Scale at 0 (serverless, function as a service) : boot-and-stop on demand.
+
+<br>
+
+> Needs **fast** start time, **high** performances, **low** memory foorprint.
