@@ -401,6 +401,13 @@ public class RewardsClientConfiguration {
 
     - `@ConfigurationProperties` on a dedicated bean.
     - Avoids repeating prefixes.
+    - Can be scanned through :
+
+        - `@EnableConfigurationProperties(<class_name.class>)`
+        in the application class.
+        - Add `@ConfigurationPropertiesScan` in the application class (auto scans for `@Component` properties classes).
+        - `@Component` on the class.
+
 
 *Ex :*
 
@@ -498,35 +505,6 @@ public class Application extends SpringBootServletInitializer {
     }
 }
 ```
-<br>
-
-## Integration Testing
-
-- `@SpringBootTest` replaces `@SpringJUnitConfig`.
-
-- Loads the entry point config class of the application and applies the same Spring Boot parameters.
-
-> `@SpringBootTest(classes=Application.class)`
-
-- The entry point can be ommitted as Spring searches for the `@SpringBootConfiguration` class :
-
-    - Its package is *above* the test package.
-    - Only 1 annotation in hierarchy (usual way).
-
-- The embedded server can get started by the testing framework.
-
-- Provides support for different webEnvironment modes :
-
-    - RANDOM_PORT
-    - DEFINED_PORT
-    - MOCK
-    - NONE
-
-- Provides a TestRestTemplate :
-
-    - Takes a relative path.
-    - Fault tolerant.
-
 <br>
 
 ## Runners
@@ -713,6 +691,61 @@ public class Application {
 
 <br>
 
+## RESTful Applications
+
+### REST
+
+- Architectural style describing best practices to *expose* web services over HTTP.
+
+- Exposes resources through **URIs**.
+
+- Supports well defined set of operations and results :
+
+    - **GET, POST, PUT, PATCH, DELETE, HEAD, OPTIONS, TRACE**.
+    - Headers.
+    - Status codes.
+
+- Resources support multiple representations (*json, xml...*).
+
+- Representations can link to other resources, allowing for extensions & discovery :
+
+    - **Hypermedia As The Engine Of Application State (HATEOAS)**.
+
+- **Stateless architecture** :
+
+    - Scalable for mobile applications or microservices.
+    - Loose-coupling between client and server.
+
+#
+### REST and Java
+
+- Jakarta RESTful Web Services (**JAX-RS**) from Jakarta EE.
+
+- Jersey, RESTEasy, Apache CXF.
+
+- **Spring MVC** provides REST support through `RestTemplate` or `WebClient`.
+
+#
+### RestTemplate vs WebClient
+
+- HttpClients that can process and perform requests.
+
+- Can be used for testing or for connecting to other APIs.
+
+<br>
+
+**RestTemplate** :
+
+- Blocking synchronous client.
+- Not supported anymore (but not deprecated).
+
+**WebClient** :
+
+- Non-blocking reactive client.
+- Flexible : can support blocking requests, streaming...
+
+<br>
+
 ## Spring MVC
 
 - Based on the [MVC pattern](../java/designPatterns.md).
@@ -783,7 +816,20 @@ Server-side rendering structure :
 
 - `@Controller`.
 
-- Component containing methods to handle incoming HTTP requests, according to their type (GET, POST...).
+- Component containing methods to handle incoming HTTP requests, according to their type (GET, POST...) :
+
+- `@RequestMapping` defines a request.
+
+    ``` java
+    @RequestMapping(path="store/orders", method=RequestMethod.GET)
+    // Analog to @GetMapping("store/orders").
+    ```
+    - Can use shortcut anontations :
+
+        - `@GetMapping`, `@PostMapping`, `@PutMapping`, `@PatchMapping`, `@DeleteMapping`.
+        - `@RequestMethod` for **HEAD**, **OPTION**, **TRACE**.
+
+    - Incoming and outcoming bodies are automatically converted in and from Java Objects to the specified output by the message converter.
 
 - `@ResponseBody` defines a REST response.
 
@@ -792,17 +838,58 @@ Server-side rendering structure :
 - `@RestController` combines :
 
     - `@Controller`.
-    - `@ResponseBody`.
+    - `@ResponseBody` for each method.
 
 - Method arguments :
 
     - Servlet parameters : HttpServletRequest, HttpSession, Principal, Locale...
     - `@RequestParam("<param>") T param`.
     - `@PathVariable`.
+    - `@RequestBody`.
     - ...
 
-- Avoid getting request parameters (body, headers, cookies...) from the request object, use corresponding annotations instead.
+> Request parameters (body, headers, cookies...) should be accessed using their corresponding annotations instead of the request object directly.
 
+- Response can be manually customized using `ResponseEntity`.
+
+*Ex :*
+
+``` java
+ResponseEntity<Order> response =
+    ResponseEntity.ok()
+        .contentType(MediaType.TEXT_PLAIN) // Defines custom headers.
+        .lastModified(order.lastUpdated()) // Defines custom headers.
+        .body(order);
+```
+<br>
+
+- `@ResponseStatus` can specify a default status for the method.
+
+- Building response URIs :
+
+    - `UriComponentBuilder` :
+
+        - Allows explicit declaration of URIs.
+        - Requires hard-coded URLs.
+
+    - `ServletUriComponentBuilder` :
+
+        - Subclass of `UriComponentBuilder`.
+        - Provides access to the original URL.
+
+*Ex :*
+
+``` java
+URI location = ServletUriComponentBuilder
+    .fromCurrentRequestUri() // Framework puts URL in current thread.
+    .path("/{itemId}")
+    .buildAndExpand("item A") // URI encoding.
+    .toUri();
+
+return ResponseEntity.created(location).build();
+
+// http://server/store/orders/12/items/item%20A
+```
 #
 ### Message converter
 
@@ -810,17 +897,8 @@ Server-side rendering structure :
 
 - Automatically maps Objects to response format (JSON, xml, image...).
 
-- Response return format : `Accept` request header.
-
-*Ex :* `Accept: application/json` will format the response : `Content-Type : application/json`.
-
-- Response can be manually customized using `ResponseEntity`.
+- Response format from the `Accept` request header.
 
 *Ex :*
 
-``` java
-ResponseEntity<String> response =
-    ResponseEntity.ok()
-        .contentType(MediaType.TEXT_PLAIN)
-        .body("Hello world");
-```
+`Accept: application/json` will format the response to `Content-Type : application/json`.

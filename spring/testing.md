@@ -10,6 +10,7 @@
     - [Property sources](#property-sources)
     - [Profiles](#profiles)
 - [Databases](#databases)
+    - [Embedded databases](#embedded-databases)
     - [Basic syntax](#basic-syntax)
     - [Execution Phase](#execution-phase)
     - [Config](#config)
@@ -124,6 +125,34 @@ public class TransferServiceTest {
 
     - Datasources.
     - JMS queues.
+
+#
+### Spring Boot specifics
+
+- `@SpringBootTest` replaces `@SpringJUnitConfig`.
+
+- Loads the entry point config class of the application and applies the same Spring Boot parameters.
+
+> `@SpringBootTest(classes=Application.class)`
+
+- The entry point can be ommitted as Spring searches for the `@SpringBootConfiguration` class :
+
+    - Its package is *above* the test package.
+    - Only 1 annotation in hierarchy (usual way).
+
+- The embedded server can get started by the testing framework.
+
+- Provides support for different webEnvironment modes :
+
+    - RANDOM_PORT
+    - DEFINED_PORT
+    - MOCK
+    - NONE
+
+- Provides a TestRestTemplate :
+
+    - Takes a relative path.
+    - Fault tolerant.
 
 #
 ### Common annotations
@@ -269,6 +298,32 @@ public void testTransferLimitExceeded() {
 
     - Annotation with a wide range of use and many **options**.
 
+#
+### Embedded databases
+
+- Usually used for development and testing purposes.
+
+- Fast and easy to use.
+
+- Can be loaded through **properties** (Spring Boot) or using an `EmbeddedDatabaseBuilder` bean.
+
+<br>
+
+*Ex :*
+
+``` java
+@Bean
+public DataSource dataSource() {
+    logger.debug("Creating the datasource bean explicitly");
+
+    // Specifies init scripts source path.
+    return
+        (new EmbeddedDatabaseBuilder())
+        .addScript("classpath:rewards/testdb/schema.sql") 
+        .addScript("classpath:rewards/testdb/data.sql")
+        .build();
+}
+```
 #
 ### Basic syntax
 
