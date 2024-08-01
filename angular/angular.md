@@ -23,7 +23,13 @@
 - [Immutability](#immutability)
 - [Router](#router)
 - [Signals](#signals)
-
+- [Internationalization](#internationalization)
+    - [Setup](#setup)
+    - [Preparing components for translation](#preparing-components-for-translation)
+    - [Metadata](#metadata)
+    - [Translation files](#translation-files)
+- [Animations](#animations)
+- [Images](#images)
 
 #
 <br>
@@ -363,26 +369,26 @@ Modifies behavior and appearance of page elements.
 
 ``` typescript
 @Directive({
-  standalone: true,
-  selector: "[appHighlight]",
+    standalone: true,
+    selector: "[appHighlight]",
 })
 export class HighlightDirective {
-  constructor(private el: ElementRef) {}
+    constructor(private el: ElementRef) {}
 
-  @Input() defaultColor = "";
-  @Input() appHighlight = "";
+    @Input() defaultColor = "";
+    @Input() appHighlight = "";
 
-  @HostListener("mouseenter") onMouseEnter() {
-    this.highlight(this.appHighlight || this.defaultColor || "red");
-  }
+    @HostListener("mouseenter") onMouseEnter() {
+        this.highlight(this.appHighlight || this.defaultColor || "red");
+    }
 
-  @HostListener("mouseleave") onMouseLeave() {
-    this.highlight('');
-  }
+    @HostListener("mouseleave") onMouseLeave() {
+        this.highlight('');
+    }
 
-  private highlight(color: string) {
-    this.el.nativeElement.style.backgroundColor = color;
-  }
+    private highlight(color: string) {
+        this.el.nativeElement.style.backgroundColor = color;
+    }
 }
 ```
 <br>
@@ -413,19 +419,19 @@ Changes the DOM layout by adding and removing DOM elements.
 <div *ngIf="hero" class="name">{{ hero.name }}</div>
 
 <ng-template [ngIf]="hero">
-  <div class="name">{{ hero.name }}</div>
+    <div class="name">{{ hero.name }}</div>
 </ng-template>
 ```
 ``` html
 <!-- Shorthand syntax. -->
 <div *ngFor="let hero of heroes; let i=index; let odd=odd; trackBy: trackById" [class.odd]="odd">
-  ({{ i }}) {{ hero.name }}
+    ({{ i }}) {{ hero.name }}
 </div>
 
 <ng-template ngFor let-hero [ngForOf]="heroes" let-i="index" let-odd="odd" [ngForTrackBy]="trackById">
-  <div [class.odd]="odd">
-    ({{ i }}) {{ hero.name }}
-  </div>
+    <div [class.odd]="odd">
+        ({{ i }}) {{ hero.name }}
+    </div>
 </ng-template>
 ```
 - `ng-template` doesn't render by default, but needs a **trigger** directive or pipe.
@@ -593,7 +599,7 @@ Each change to the data model produces a new data model rather than modifying th
 - Largely inspired from **ngRx** and **RxJs** :
 
     - **Pub/Sub Observable** implementation from within Angular.
-    - Implementations for **actions**, **mutations**, **reducers**.
+    - Alernative to `Subject` and `BehaviorSubject`.
 
 - More efficient than `OnPush` change detection :
 
@@ -629,3 +635,249 @@ const value: Message[] = signal();
     - **Side-effect** : triggers other processes when the value change.
     - Always **asynchronous**.
     - Need to **access dependencies** : should be set inside the constructor.
+
+<br>
+
+## Internationalization
+
+- Also known as **i18n**.
+
+- Process of designing and preparing the project for use in **different locales**.
+
+    - Extracts text for translation into different languages.
+    - Formats data for a specific locale (currencies, dates...).
+
+- A **locale** is referenced by its *Unicode identifier* : `<language_id>-<locale_extension>`.
+
+    *Ex :* 
+
+    | Language | Locale | Unicode locale ID |
+    |----------|--------|-------------------|
+    | English  | Canada | `en-CA`           |
+    | English  | USA    | `en-US`           |
+    | French   | Canada | `fr-CA`           |
+    | French   | France | `fr-FR `          |
+
+<br>
+
+- `Date` and `Currency` pipes use the current locale to format values. A specific locale can also be specified.
+
+- Built-in feature of Angular : no need to use external libraries such as `ngx-translate` (deprecated) anymore.
+
+- Caveat : no live language change is possible as the locale needs to be recompiled.
+
+#
+### Setup
+
+- Add the `localize` package :
+
+> `ng add @angular/localize`
+
+- Prepare components for translation.
+
+- Extract marked text into a **source language file**.
+
+- Add translations files to a destination folder.
+
+- Specify a locale ID for the code to use in **Angular.json**, and locales used for the application.
+
+``` json
+"i18n": {
+    "sourceLocale": "en-US",
+    "locales": {
+        "fr": {
+            "translation": "src/locale/messages.fr.json",
+        },
+        // ...
+    }
+}
+```
+<br>
+
+- Multiple locales can be built and deployed under multiple dist directories and accessible under `app/<locale>` from the browser. 
+
+#
+### Preparing components for translation
+
+- Text can be marked in component template :
+
+    ``` html
+    <h1 i18n>Hello i18n!</h1>
+    ```
+- Elements attributes can be marked for translation :
+
+    ``` html
+    <img [src]="/logo" i18n-title title="Angular logo" alt="Angular logo">
+    ```    
+- Text can be marked in component code :
+
+    ``` typescript
+    $localize `dashboard`;
+    ```
+- Metadata can be specified if necessary.
+
+#
+### Metadata
+
+| Parameter       | Details                                                                 |
+|-----------------|-------------------------------------------------------------------------|
+| **Custom ID**   | Provides a custom identifier.                                           |
+| **Description** | Provides additional information or context.                             |
+| **Meaning**     | Provides the meaning or intent of the text within the specific context. |
+
+<br>
+
+- Syntax : `:<meaning>|<description>@@<custom_id>:<text>`.
+
+- The *Angular extraction tool* generates a translation unit entry for each i18n attribute in a template.
+
+- Each entry gets assigned an **unique ID** based on the *meaning* and *description*.
+
+- The same text elements with different meanings are extracted with **different IDs**.
+
+<br>
+
+*Ex :*
+
+``` typescript
+$localize `:correct:right`;
+$localize `:direction:right`;
+```
+The string 'right' will generate 2 translations entries since different meanings are specified.
+
+#
+### Translation files
+
+- `ng extract-i18n` will extract a `messages.xlf` source language file.
+
+| Command option   | Details                            |
+|------------------|------------------------------------|
+| `--format`       | Output file format (json, xml...). |
+| `--out-file`     | Output file name.                  |
+| `--output-path ` | Output directory.                  |
+
+<br>
+
+- Translation files can be created from copies of the source file.
+
+<br>
+
+## Animations
+
+- Animates css elements from component typescript code.
+
+- Requires `@angular/animations` and `@angular/platform-browser`.
+
+- Bootstrap :
+
+    - **Component-based**
+
+    ``` typescript
+    bootstrapApplication(AppComponent, {
+        providers: [
+            // provideAnimations() if animations should play on bootstrap directly.
+            provideAnimationsAsync(),
+        ]
+    });    
+    ```
+    - **Module-based**
+
+    ``` typescript
+    @NgModule({
+        imports: [BrowserModule, BrowserAnimationsModule],
+        declarations: [],
+        bootstrap: [],
+    })
+    export class AppModule {}   
+    ```
+<br>
+
+- Holds **built-in animations**.
+
+- Can create **custom animations**.
+
+<br>
+
+*Ex :*
+
+``` typescript
+@Component({
+  standalone: true,
+  selector: 'app-open-close',
+  animations: [
+    trigger('openClose', [
+        state(
+            'open',
+            style({
+                height: '200px',
+                opacity: 1,
+                backgroundColor: 'yellow',
+            })
+        ),
+        state(
+            'closed',
+            style({
+                height: '100px',
+                opacity: 0.8,
+                backgroundColor: 'blue',
+            })
+        ),
+        transition('open => closed', [animate('1s')]),
+        transition('closed => open', [animate('0.5s')])
+    ]),
+  ],
+  template: `
+    <nav>
+        <button type="button" (click)="toggle()">Toggle Open/Close</button>
+    </nav>
+    <div [@openClose]="isOpen ? 'open' : 'closed'" class="open-close-container">
+        <p>The box is now {{ isOpen ? 'Open' : 'Closed' }}!</p>
+    </div>
+  `
+})
+export class OpenCloseComponent {
+    isOpen = true;
+    toggle() {
+        this.isOpen = !this.isOpen;
+    }
+}
+```
+<br>
+
+## Images
+
+Performance best practices for loading images using the `NgOptimizedImage` directive.
+
+- Loading of the **Largest Contentful Paint (LCP)** image prioritized by :
+
+
+    - Automatically setting the `fetchpriority` attribute on the `<img>` tag.
+    - Lazy loading other images by default.
+    - Automatically generating a preconnect link tag in the document head.
+    - Automatically generating a `srcset` attribute.
+    - Generating a preload hint if app is using SSR.
+
+- Also enforces best practices :
+
+    - Uses image **CDN urls** to apply optimizations.
+    - Prevents layout shift by requiring `width` and `height`.
+    - Warns if width or height have been set incorrectly.
+    - Warns if the image will be visually distorted when rendered.
+
+<br>
+
+*Ex :*
+
+The LCP is marked using the `priority` attribute :
+
+``` html
+<img ngSrc="cat.jpg" width="400" height="200" priority>
+```
+Background image can be achieved using `fill` instead of specifying width and height :
+
+``` html
+<!-- Positioned element only. -->
+<img ngSrc="cat.jpg" fill>    
+```
+
+
