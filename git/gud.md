@@ -16,6 +16,7 @@
     - [Amending changes](#amending-changes)
 - [Branches](#branches)
     - [Moving branches in the tree](#moving-branches-in-the-tree)
+    - [Renaming branches](#renaming-branches)
     - [Tags](#tags)
 - [Commits Movements](#commits-movements)
     - [Merge](#merge)
@@ -138,9 +139,13 @@ Before changes can be committed, they need to be tracked and added inside the `.
 
 > `git add <file_path>`
 
-- Untracking a previously tracked file (remove from repository only) :
+- Adding only a specific file :
 
-> `git rm --cached <file_path>`
+> `git add <file_path>`
+
+- Untracking a previously tracked file :
+
+> `git restore <file_path>`
 
 #
 ### Patching
@@ -272,6 +277,14 @@ Creates a new commit that records the **reverse changes** of the target commit a
 
 > `git revert <ref>`
 
+<br>
+
+- `rm`
+
+Uncommits a committed file (remove from `.git` repository only) :
+
+> `git rm --cached <file_path>`
+
 #
 ### Amending changes
 
@@ -333,6 +346,11 @@ A change in files or commit message **generates a new signature** : `--amend` do
 ### Moving branches in the tree
 
 > `git branch -f <branch_name> HEAD~3` - The branch now references a commit 3 commits behind HEAD.
+
+#
+### Renaming branches
+
+> `git branch -m <old_name> <new_name>` - Moves the branch name, config and reflog into a new branch.
 
 #
 ### Tags

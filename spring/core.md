@@ -477,12 +477,12 @@ private AccountRepository acountRepository;
 
 **<u>Differences</u>** :
 
-| Contructor injection                  | Method injection                    |
-|---------------------------------------|-------------------------------------|
-| Mandatory dependencies                | Circular dependencies possible      |
-| Dependencies can be immutable         | Dependencies are mutable            |
-| Concise (pass several params at once) | Could be verbose for several params |
-|                                       | Inherited automatically             |
+| Contructor injection                   | Method injection                     |
+|----------------------------------------|--------------------------------------|
+| Mandatory dependencies.                | Circular dependencies possible.      |
+| Dependencies can be immutable.         | Dependencies are mutable.            |
+| Concise (pass several params at once). | Could be verbose for several params. |
+|                                        | Inherited automatically.             |
 
 <br>
 
@@ -660,10 +660,10 @@ public class MailService {
 
 *<u>Beans name and type definitions :</u>*
 
-|                  | Name                                                                  | Type                    |
-|------------------|-----------------------------------------------------------------------|-------------------------|
-| Class-based      | From method name by default or from `@Bean` name/value attribute      | From method return type |
-| Annotation-based | Derived from class name by default or from annotation value attribute | From anbnotated class   |
+|                  | Name                                                                   | Type                     |
+|------------------|------------------------------------------------------------------------|--------------------------|
+| Class-based      | From method name by default or from `@Bean` name/value attribute.      | From method return type. |
+| Annotation-based | Derived from class name by default or from annotation value attribute. | From annotated class.    |
 
 <br>
 
@@ -671,14 +671,14 @@ public class MailService {
 
 Built-in bean **scopes** :
 
-| Scope           | Scopes a single bean definition to...                             |
-|-----------------|-------------------------------------------------------------------|
-| **singleton**   | A single object instance for each Spring IoC container. (Default) |
-| **prototype**   | Any number of object instances                                    |
-| **request**     | The lifecycle of a single HTTP request                            |
-| **session**     | The lifecycle of an HTTP Session                                  |
-| **application** | The lifecycle of a ServletContext                                 |
-| **websocket**   | The lifecycle of a WebSocket                                      |
+| Scope           | Scopes a single bean definition to...                              |
+|-----------------|--------------------------------------------------------------------|
+| **singleton**   | A single object instance for each Spring IoC container. (Default). |
+| **prototype**   | Any number of object instances.                                    |
+| **request**     | The lifecycle of a single HTTP request.                            |
+| **session**     | The lifecycle of an HTTP Session.                                  |
+| **application** | The lifecycle of a ServletContext.                                 |
+| **websocket**   | The lifecycle of a WebSocket.                                      |
 
 <br>
 

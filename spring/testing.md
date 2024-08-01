@@ -6,6 +6,7 @@
 - [JUnit](#junit)
 - [Integration Testing](#integration-testing)
     - [Spring](#spring)
+    - [Spring Boot specifics](#spring-boot-specifics)
     - [Common annotations](#common-annotations)
     - [Property sources](#property-sources)
     - [Profiles](#profiles)
