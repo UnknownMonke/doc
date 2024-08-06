@@ -1,5 +1,7 @@
 # Testing
 
+*Last Updated : 05/2024 - Spring 6.2 - Spring Boot 3.4.*
+
 ### Summary
 
 - [Unit Testing](#unit-testing)
@@ -17,6 +19,8 @@
     - [Config](#config)
 
 #
+> Main sources : [Spring Academy Courses](https://spring.academy/home), [documentation](https://spring.io/projects/spring-framework).
+
 <br>
 
 ## Unit Testing

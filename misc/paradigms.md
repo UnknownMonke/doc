@@ -1,5 +1,9 @@
 # Programming Paradigms
 
+*Last Updated : 01/2024.*
+
+#
+
 High-level way to structure and conceptualize the implementation of a computer program.
 
 Common programming paradigms :

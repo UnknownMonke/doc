@@ -1,5 +1,7 @@
 # Spring JDBC
 
+*Last Updated : 05/2024 - Spring 6.2 - Spring Boot 3.4.*
+
 ### Summary
 
 - [Java Database Connectivity (JDBC)](#java-database-connectivity-jdbc)
@@ -9,6 +11,8 @@
 - [Exceptions](#exceptions)
 
 #
+> Main sources : [Spring Academy Courses](https://spring.academy/home), [documentation](https://spring.io/projects/spring-framework).
+
 <br>
 
 ## Java Database Connectivity (JDBC)

@@ -1,5 +1,7 @@
 # Core Web Vitals
 
+*Last Updated : 08/2024.*
+
 ### Summary
 
 - [Motivations](#Motivations)
@@ -24,7 +26,7 @@
 - [Continous Monitoring and Optimization](#continous-monitoring-and-optimization)
 
 #
-> [Official Google Knowledge Base](https://web.dev/explore/learn-core-web-vitals).
+> Source : [Google Knowledge Base](https://web.dev/explore/learn-core-web-vitals).
 
 <br>
 

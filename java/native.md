@@ -1,5 +1,7 @@
 # Native Java
 
+*Last Updated : 01/2024 - Java 21.*
+
 ### Summary
 
 - [Traditional Java Applications](#traditional-java-applications)
@@ -9,6 +11,8 @@
     - [Usages](#usages)
 
 #
+> Source : *Capgemini* internal presentation.
+
 <br>
 
 ## Traditional Java Applications

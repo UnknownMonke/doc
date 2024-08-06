@@ -1,5 +1,7 @@
 # Git Branching
 
+*Last Updated : 05/2024.*
+
 ### Summary
 
 - [Git](#git)

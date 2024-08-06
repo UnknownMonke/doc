@@ -1,5 +1,9 @@
 # Web Applications Ecodesign
 
+*Last Updated : 01/2024.*
+
+#
+
 Some keys elements to take into account when developping web applications :
 
 - **Expiry** & **decommission** of data.

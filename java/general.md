@@ -1,5 +1,7 @@
 # General Doc
 
+*Last Updated : 01/2024 - Java 21.*
+
 ### Summary
 
 - [Environment](#environment)

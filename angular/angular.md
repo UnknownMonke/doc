@@ -1,5 +1,7 @@
 # Angular Basics
 
+*Last Updated : 08/2024 - Angular 18.*
+
 ### Summary
 
 - [Overview](#overview)
@@ -32,6 +34,8 @@
 - [Images](#images)
 
 #
+> Source : [Angular official documentation](https://angular.dev/overview).
+
 <br>
 
 ## Overview

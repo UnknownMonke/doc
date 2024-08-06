@@ -1,5 +1,7 @@
 # Spring Boot
 
+*Last Updated : 05/2024 - Spring 6.2 - Spring Boot 3.4.*
+
 ### Summary
 
 - [Overview](#overview)
@@ -33,6 +35,8 @@
     - [Message converter](#message-converter)
 
 #
+> Main sources : [Spring Academy Courses](https://spring.academy/home), [documentation](https://spring.io/projects/spring-framework).
+
 <br>
 
 ## Overview

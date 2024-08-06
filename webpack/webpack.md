@@ -1,5 +1,7 @@
 # Webpack
 
+*Last Updated : 05/2024 - webpack 5.*
+
 ### Summary
 
 - [Overview](#overview)
@@ -11,6 +13,8 @@
     - [Mode](#mode)
 
 #
+> Source : [webpack official documentation](https://webpack.js.org/concepts).
+
 <br>
 
 ## Overview
