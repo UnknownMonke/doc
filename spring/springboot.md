@@ -755,7 +755,7 @@ public class Application {
 
 ## Spring MVC
 
-- Based on the [MVC pattern](../java/designPatterns.md).
+- Based on the [MVC pattern](../java/design-patterns.md).
 
 - POJO programming with independent business logic controller units.
 

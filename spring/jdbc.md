@@ -58,7 +58,7 @@ public List<User> findByLastName(String lastName) {
 
 ## JDBC Template
 
-- Uses the **template-method** design pattern ([related doc.](../java/designPatterns.md)).
+- Uses the **template-method** design pattern ([related doc.](../java/design-patterns.md)).
 
 - Defines outlines or skeleton of an algorithm and hide large amount of boilerplate code :
 

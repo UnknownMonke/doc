@@ -172,7 +172,7 @@ public class JdbcAccountRepository implements AccountRepository {
 
 <br>
 
-> [Related doc.](../java/designPatterns.md)
+> [Related doc.](../java/design-patterns.md)
 
 #
 ### Dependency Injection vs Inversion of Control

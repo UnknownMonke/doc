@@ -1,6 +1,6 @@
 # Design Patterns
 
-*Last Updated : 01/2024.*
+*Last Updated : 01/2024 - Java 21.*
 
 ### Summary
 
